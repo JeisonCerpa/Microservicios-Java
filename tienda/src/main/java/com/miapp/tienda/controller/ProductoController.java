@@ -3,11 +3,9 @@ package com.miapp.tienda.controller;
 import com.miapp.tienda.model.Producto;
 import com.miapp.tienda.service.ProductoService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import java.util.List;
-
 
 @RestController
 public class ProductoController {
@@ -23,9 +21,5 @@ public class ProductoController {
         return productoService.obtenerProductosDeObjeto();
     }
 
-    @GetMapping("/productos/{id}")
-    public Mono<Producto> obtenerProductoPorId(@PathVariable Long id) {
-        return productoService.obtenerProductoPorId(id);
-    }
     
 }

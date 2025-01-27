@@ -1,8 +1,6 @@
 package com.miapp.tienda.service;
 
 import com.miapp.tienda.model.Producto;
-import com.miapp.tienda.repository.ProductoRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,12 +27,4 @@ public class ProductoService {
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<Producto>>() {});
     }
-
-    @Autowired
-    
-    private ProductoRepository ProductoRepository;
-    public Mono<Producto> obtenerProductoPorId(Long id) {
-        return ProductoRepository.findById(id);
-    }
-
 }

@@ -25,5 +25,14 @@ public class ProductoService {
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<ProductoDTO>>() {});
     }
+
+    // Obtener un producto por su ID
+    public Mono<ProductoDTO> obtenerProductoPorId(Long id) {
+        WebClient webClient = webClientBuilder.baseUrl(OBJETO_MICROSERVICIO_URL).build();
+        return webClient.get()
+                .uri("/{id}", id)
+                .retrieve()
+                .bodyToMono(ProductoDTO.class);
+    }
 }
 

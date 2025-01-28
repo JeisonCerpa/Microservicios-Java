@@ -1,6 +1,6 @@
 package com.miapp.tienda.service;
 
-import com.miapp.tienda.model.Producto;
+import com.miapp.tienda.model.ProductoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -15,16 +15,15 @@ public class ProductoService {
     @Autowired
     private WebClient.Builder webClientBuilder;
 
-    // Actualiza la URL a la nueva ruta
     private static final String OBJETO_MICROSERVICIO_URL = "http://localhost:8081/api/objetos";
 
-    public Mono<List<Producto>> obtenerProductosDeObjeto() {
-        // Crear un objeto WebClient
-        WebClient webClient = webClientBuilder.baseUrl(OBJETO_MICROSERVICIO_URL).build();
 
-        // Realizar la solicitud GET al microservicio de objeto
+    // Obtener productos de un microservicio externo (según tu configuración actual)
+    public Mono<List<ProductoDTO>> obtenerProductosDeObjeto() {
+        WebClient webClient = webClientBuilder.baseUrl(OBJETO_MICROSERVICIO_URL).build();
         return webClient.get()
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<Producto>>() {});
+                .bodyToMono(new ParameterizedTypeReference<List<ProductoDTO>>() {});
     }
 }
+

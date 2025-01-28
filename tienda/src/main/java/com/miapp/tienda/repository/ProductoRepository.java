@@ -1,8 +1,8 @@
-package com.miapp.tienda.repository;
+/* package com.miapp.tienda.repository;
 
 import com.miapp.tienda.model.Producto;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductoRepository extends ReactiveCrudRepository<Producto, Long> {
-    // Aquí puedes agregar más métodos si lo necesitas
-}
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+    // Aquí puedes agregar métodos de consulta personalizados de JPA
+} */

@@ -91,6 +91,27 @@
         </dependency>
         -->
 
+        <!-- OpenAPI (Swagger) for API documentation -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+            <version>1.6.9</version>
+        </dependency>
+
+        <!-- webjars-locator-core dependency -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-core</artifactId>
+            <version>0.48</version>
+        </dependency>
+
+        <!-- classgraph dependency -->
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.8.104</version>
+        </dependency>
+
     </dependencies>
 
 <build>

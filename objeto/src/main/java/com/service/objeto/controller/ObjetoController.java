@@ -40,4 +40,10 @@ public class ObjetoController {
     public void deleteObjeto(@PathVariable Long id) {
         objetoService.deleteObjeto(id);
     }
+
+    @Operation(summary = "Actualizar un objeto por ID")
+    @PutMapping("/{id}")
+    public Objeto updateObjeto(@PathVariable Long id, @RequestBody Objeto objeto) {
+        return objetoService.updateObjeto(id, objeto);
+    }
 }

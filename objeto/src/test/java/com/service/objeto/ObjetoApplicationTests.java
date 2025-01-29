@@ -94,4 +94,22 @@ class ObjetoApplicationTests {
 
         verify(objetoRepository, times(1)).deleteById(objetoId);
     }
+
+    @Test
+    void testUpdateObjeto() {
+        Objeto objeto = new Objeto();
+        objeto.setId(1L);
+        objeto.setNombre("Objeto 1");
+        objeto.setDescripcion("Descripción 1");
+
+        when(objetoRepository.findById(1L)).thenReturn(Optional.of(objeto));
+        when(objetoRepository.save(objeto)).thenReturn(objeto);
+
+        objeto.setNombre("Objeto Actualizado");
+        Objeto updatedObjeto = objetoService.updateObjeto(1L, objeto);
+
+        assertEquals("Objeto Actualizado", updatedObjeto.getNombre());
+        verify(objetoRepository, times(1)).findById(1L);
+        verify(objetoRepository, times(1)).save(objeto);
+    }
 }

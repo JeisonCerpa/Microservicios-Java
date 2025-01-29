@@ -28,4 +28,14 @@ public class ObjetoService {
     public void deleteObjeto(Long id) {
         objetoRepository.deleteById(id);
     }
+
+    public Objeto updateObjeto(Long id, Objeto objeto) {
+        Objeto existingObjeto = objetoRepository.findById(id).orElse(null);
+        if (existingObjeto != null) {
+            existingObjeto.setNombre(objeto.getNombre());
+            existingObjeto.setDescripcion(objeto.getDescripcion());
+            return objetoRepository.save(existingObjeto);
+        }
+        return null;
+    }
 }

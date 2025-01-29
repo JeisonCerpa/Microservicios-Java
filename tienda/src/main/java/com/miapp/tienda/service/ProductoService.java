@@ -17,7 +17,6 @@ public class ProductoService {
 
     private static final String OBJETO_MICROSERVICIO_URL = "http://localhost:8081/api/objetos";
 
-
     // Obtener productos de un microservicio externo (según tu configuración actual)
     public Mono<List<ProductoDTO>> obtenerProductosDeObjeto() {
         WebClient webClient = webClientBuilder.baseUrl(OBJETO_MICROSERVICIO_URL).build();

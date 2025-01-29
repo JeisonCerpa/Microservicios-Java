@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: objetosdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"  # Cambiar el puerto expuesto a 3307
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  objeto:
+    build:
+      context: ./objeto
+      dockerfile: Dockerfile
+    container_name: objeto
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/objetosdb
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+
+  tienda:
+    build:
+      context: ./tienda
+      dockerfile: Dockerfile
+    container_name: tienda
+    ports:
+      - "8082:8080"  # Cambiar el puerto expuesto a 8082
+    depends_on:
+      - objeto
+
+volumes:
+  mysql-data:

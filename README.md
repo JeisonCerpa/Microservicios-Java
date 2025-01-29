@@ -7,6 +7,7 @@ Este proyecto contiene dos microservicios: `tienda` y `objeto`. A continuación,
 - Java 21
 - Maven
 - MySQL (para el microservicio `objeto`)
+- Docker y Docker Compose
 
 ## Configuración
 
@@ -76,6 +77,18 @@ Ambos microservicios utilizan Swagger para la documentación de la API. Una vez 
 
 - **Microservicio `objeto`**: `http://localhost:8081/swagger-ui.html`
 - **Microservicio `tienda`**: `http://localhost:8080/swagger-ui.html`
+
+## Uso de Docker Compose
+
+Para ejecutar ambos microservicios junto con una base de datos MySQL utilizando Docker Compose, sigue estos pasos:
+
+1. Navega al directorio raíz del proyecto donde se encuentra el archivo `docker-compose.yml`.
+2. Ejecuta el siguiente comando para construir y ejecutar los contenedores:
+    ```bash
+    docker-compose up --build
+    ```
+
+Esto construirá las imágenes Docker para ambos microservicios y los ejecutará junto con una instancia de MySQL.
 
 ## Posibles Mejoras
 

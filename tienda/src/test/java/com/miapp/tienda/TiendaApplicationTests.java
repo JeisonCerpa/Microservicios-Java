@@ -1,34 +1,58 @@
 package com.miapp.tienda;
 
+import com.miapp.tienda.controller.ProductoController;
 import com.miapp.tienda.model.ProductoDTO;
-
-import org.junit.jupiter.api.Disabled;
+import com.miapp.tienda.service.ProductoService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.reactive.server.WebTestClient;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
+import java.util.Arrays;
 import java.util.List;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import static org.mockito.Mockito.when;
+
 public class TiendaApplicationTests {
 
-    @Autowired
-    private WebTestClient webTestClient;
+    @Mock
+    private ProductoService productoService;
 
-    @Disabled
+    @InjectMocks
+    private ProductoController productoController;
+
+    public TiendaApplicationTests() {
+        MockitoAnnotations.openMocks(this);
+    }
+
     @Test
-    void obtenerProductos() {
-        // Hacemos una solicitud GET a /productos
-        webTestClient.get().uri("/productos")
-                .exchange()
-                .expectStatus().isOk()  // Esperamos que el status sea OK
-                .expectHeader().contentType("application/json")  // Esperamos que el contenido sea JSON
-                .expectBodyList(ProductoDTO.class)  // Esperamos que el cuerpo sea una lista de productos
-                .consumeWith(response -> {
-                    List<ProductoDTO> productos = response.getResponseBody();
-                    // Verificamos que la lista no esté vacía
-                    assert productos != null && productos.size() > 0;
-                });
+    void testObtenerProductos() {
+        List<ProductoDTO> productos = Arrays.asList(
+                new ProductoDTO(1L, "Producto 1", "Descripción 1"),
+                new ProductoDTO(2L, "Producto 2", "Descripción 2")
+        );
+
+        when(productoService.obtenerProductosDeObjeto()).thenReturn(Mono.just(productos));
+
+        Mono<List<ProductoDTO>> resultado = productoController.obtenerProductos();
+
+        StepVerifier.create(resultado)
+                .expectNext(productos)
+                .verifyComplete();
+    }
+
+    @Test
+    void testObtenerProductoPorId() {
+        ProductoDTO producto = new ProductoDTO(1L, "Producto 1", "Descripción 1");
+
+        when(productoService.obtenerProductoPorId(1L)).thenReturn(Mono.just(producto));
+
+        Mono<ProductoDTO> resultado = productoController.obtenerProductoPorId(1L);
+
+        StepVerifier.create(resultado)
+                .expectNext(producto)
+                .verifyComplete();
     }
 }

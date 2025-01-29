@@ -1,12 +1,17 @@
 package com.miapp.tienda.model;
 
-
-
 public class ProductoDTO {
 
     private Long id;
     private String nombre;
     private String descripcion;
+
+    // Constructor
+    public ProductoDTO(Long id, String nombre, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
 
     // Getters y setters
 

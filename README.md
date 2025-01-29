@@ -98,11 +98,3 @@ Esto construirá las imágenes Docker para ambos microservicios y los ejecutará
 4. **Pruebas de Integración**: Añadir pruebas de integración más robustas utilizando herramientas como Testcontainers.
 5. **Documentación Adicional**: Mejorar la documentación con ejemplos de uso y casos de prueba.
 6. **Escalabilidad**: Implementar balanceo de carga y escalabilidad horizontal utilizando Kubernetes o Docker Swarm.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que desees realizar.
-
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.

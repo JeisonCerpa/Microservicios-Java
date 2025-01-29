@@ -83,4 +83,15 @@ class ObjetoApplicationTests {
         assertEquals("Objeto 1", createdObjeto.getNombre());
         verify(objetoRepository, times(1)).save(objeto);
     }
+
+    @Test
+    void testDeleteObjeto() {
+        Long objetoId = 1L;
+
+        doNothing().when(objetoRepository).deleteById(objetoId);
+
+        objetoService.deleteObjeto(objetoId);
+
+        verify(objetoRepository, times(1)).deleteById(objetoId);
+    }
 }

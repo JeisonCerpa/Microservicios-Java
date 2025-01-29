@@ -24,4 +24,8 @@ public class ObjetoService {
     public Objeto createObjeto(Objeto objeto) {
         return objetoRepository.save(objeto);
     }
+
+    public void deleteObjeto(Long id) {
+        objetoRepository.deleteById(id);
+    }
 }
